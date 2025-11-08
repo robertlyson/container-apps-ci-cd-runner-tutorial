@@ -8,12 +8,6 @@ RUN apt-get update && apt-get install -y curl jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Install Kaniko
-RUN mkdir -p /kaniko && \
-    curl -sSL -o /kaniko/executor https://github.com/GoogleContainerTools/kaniko/releases/latest/download/executor-linux-amd64 && \
-    chmod +x /kaniko/executor && \
-    ln -s /kaniko/executor /usr/local/bin/kaniko
-
 COPY github-actions-runner/entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
